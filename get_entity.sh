@@ -2,7 +2,7 @@
 value="label=$(hostname)"
 entity=""
 while read -r line; do
-   if [[ $line =~ $value ]]; then
+   if [[ $line == *"$value "* ]]; then
       entity="${line:12:10}"
    fi
 done < <(/usr/local/bin/raxmon-entities-list)
