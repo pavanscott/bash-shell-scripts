@@ -1,4 +1,5 @@
 #!/bin/bash
+#Returns host entity from raxmon-entities-list
 value="label=$(hostname)"
 entity=""
 while read -r line; do
