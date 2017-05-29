@@ -5,16 +5,17 @@ email () {
 From: resume-site@darin.com
 Subject: Memory Alert on Resume Site!
 
-Resume site is at $1 percent! 
+Resume site is at $1 MB! 
 EOF
 }
 
-MEMORY_THRESHOLD=75;
+MEMORY_THRESHOLD=200;
 
 check_memory() {
-  memory_used=$(sar -r 1 1 | awk 'END{print $4}')
-  memory_percent=$(printf  "%.0f\n" $memory_used)
-  ((memory_percent > MEMORY_THRESHOLD)) && email $memory_percent
+  set $(free -m)
+  echo "${13}"
+  memory=$(printf  "%.0f\n" $(echo "${13}"| tr -d 'GMBK'))
+  ((memory > MEMORY_THRESHOLD)) && email $memory
 }
 
 check_memory
